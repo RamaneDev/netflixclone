@@ -39,7 +39,7 @@ const movies = [
 class Home extends Component {
     render() {
         return (
-            <div>Home</div>
+            <div>Home test </div>
         )
     }
 }
