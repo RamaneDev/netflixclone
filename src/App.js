@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import { Header } from "./components";
 import './App.css';
+import { Home } from "./routes/Home";
 
 class App extends Component {
   
   render() {
     return (
       <div className="App">
-         <Header badge={15} />
+         <Header badge={18} />
+         <Home />
       </div>
     );
   }
