@@ -1,11 +1,18 @@
+import React, {Component} from "react";
+import { Header } from "./components";
+import './App.css';
 
-
-function App() {
-  return (
-    <div className="App">
-     content app
-    </div>
-  );
+class App extends Component {
+  
+  render() {
+    return (
+      <div className="App">
+         <Header badge={15} />
+      </div>
+    );
+  }
+  
+ 
 }
 
 export default App;
