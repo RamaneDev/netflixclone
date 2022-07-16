@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { HeaderImag } from "../components";
 
 const movies = [
     {
@@ -39,7 +40,12 @@ const movies = [
 class Home extends Component {
     render() {
         return (
-            <div>Home test </div>
+           <HeaderImag 
+               title="Fast and Furious"
+               overview="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+               imgSrc={'./images/Fast_large.jpg'}
+
+           />
         )
     }
 }
