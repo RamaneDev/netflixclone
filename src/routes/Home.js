@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import { HeaderImag } from "../components";
+import { HeaderImg, LoadButton, Searchbar } from "../components";
+import { PosterList } from "../components/PosterList";
 
 const movies = [
     {
@@ -40,12 +41,17 @@ const movies = [
 class Home extends Component {
     render() {
         return (
-           <HeaderImag 
-               title="Fast and Furious"
-               overview="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
-               imgSrc={'./images/Fast_large.jpg'}
+          <div>
+                <HeaderImg 
+                    title="Fast and Furious"
+                    overview="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+                    imgSrc={'./images/Fast_large.jpg'}
 
-           />
+                />
+                <Searchbar />
+                <PosterList movies={movies}/>
+                <LoadButton loading={false}/>
+           </div>
         )
     }
 }
