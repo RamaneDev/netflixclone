@@ -3,7 +3,7 @@ import '../css/HeaderImg.css';
 
 
 
-class HeaderImag extends Component {
+class HeaderImg extends Component {
     render() {
         return (
             <div className="headerImg" style={{background: `url(${this.props.imgSrc}) no-repeat`}}>
@@ -17,4 +17,4 @@ class HeaderImag extends Component {
     }
 }
 
-export { HeaderImag }
+export { HeaderImg }
