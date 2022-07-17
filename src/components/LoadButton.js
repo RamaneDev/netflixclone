@@ -1,10 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {Component} from "react";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import '../css/LoadButton.css';
 
-library.add(faSpinner);
+import React, {Component} from "react";
+
+import '../css/LoadButton.css';
+import { Spinner } from "./Spinner";
+
+
 
 
 
@@ -14,12 +14,7 @@ class LoadButton extends Component {
           <>
             {this.props.loading ? 
             (
-              <FontAwesomeIcon 
-                 icon="spinner"
-                 pulse
-                 size="7x"
-                 className="fa-faSpinner"
-              />   
+                <Spinner />
             ):
             (
                 <div className="loadButton">
