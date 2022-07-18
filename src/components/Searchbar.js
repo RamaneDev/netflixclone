@@ -13,6 +13,7 @@ class Searchbar extends Component {
         })
     }
     render() {
+        const {value} = this.state;
         return (
             <div className="searchBar--container">
                 <div className="searchBar">
@@ -23,7 +24,8 @@ class Searchbar extends Component {
                      placeholder="Rechercher un film"
                      onChange={this.handleChange} />
                 </div>
-                <div className="searchBar--submit">
+                <div className="searchBar--submit"
+                     onClick={() => this.props.onSearchClick(value)}>
                     <FontAwesome name="search" />
                 </div>
 

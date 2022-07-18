@@ -15,7 +15,7 @@ class Home extends Component {
                     imgSrc={image}
 
                 />
-                <Searchbar />
+                <Searchbar onSearchClick={this.props.onSearchClick}/>
                 <PosterList movies={movies}/>
                 <LoadButton loading={loading}/>
            </div>
