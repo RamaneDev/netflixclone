@@ -54,6 +54,11 @@ class App extends Component {
     // lancer la recherche 
     console.log('handleSearch', value);
   }
+
+  loadMore = () => {
+    // charger plus de film
+    console.log('load more');
+  }
   
   render() {
     return (
@@ -62,6 +67,7 @@ class App extends Component {
          <Home 
            {...this.state}
            onSearchClick={this.handleSearch}
+           onButtonClick={this.loadMore}
           />
       </div>
     );
