@@ -63,8 +63,7 @@ class App extends Component {
         image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
         mTitle: results[0].title,
         mDesc: results[0].overview
-      })
-      console.log('res', results);
+      })      
     } catch (error) {
       console.log('e', error);
     }
@@ -81,8 +80,26 @@ class App extends Component {
     console.log('handleSearch', value);
   }
 
-  loadMore = () => {
-    // charger plus de film
+  loadMore = async () => {
+    this.setState({
+      loading:true
+    })
+     try {
+      const {data: {results, page, total_pages}} = await this.loadMovie();
+      this.setState({
+        movies: [...this.state.movies,...results],
+        loading:false,
+        activePage: page,
+        total_pages:total_pages,
+        image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
+        mTitle: results[0].title,
+        mDesc: results[0].overview
+      })      
+       
+     } catch (error) {
+       console.log('e', error)
+       
+     }
     console.log('load more');
   }
   
