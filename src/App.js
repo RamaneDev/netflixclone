@@ -75,8 +75,36 @@ class App extends Component {
      return await axios.get(url);
   }
 
-  handleSearch = value => {
+  searchMovie = async () => {
+    const page = this.state.activePage + 1;
+     const url = `${API_URL}/search/movie?api_key=${API_KEY}&query=${this.state.searchText}&language=fr`;
+     return await axios.get(url);
+  }
+
+  handleSearch = (value) => {
     // lancer la recherche 
+    try {
+      this.setState({
+        loading:true,
+        searchText:value
+      },
+      async () => {
+        const {data: {results, page, total_pages}} = await this.searchMovie();
+        this.setState({
+          movies: results,
+          loading:false,
+          activePage: page,
+          total_pages:total_pages,
+          image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
+          mTitle: results[0].title,
+          mDesc: results[0].overview
+        })      
+      })     
+       
+     } catch (error) {
+       console.log('e', error)
+       
+     }
     console.log('handleSearch', value);
   }
 
