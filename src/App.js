@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import { Header } from "./components";
 import './App.css';
 import { Home } from "./routes/Home";
+import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
+import axios from "axios";
 
 class App extends Component {
 
@@ -48,6 +50,30 @@ class App extends Component {
     activePage:0,
     totalPages:0,
     searchText:""
+  }
+
+  async componentDidMount() {
+    try {
+      const {data: {results, page, total_pages}} = await this.loadMovie();
+      this.setState({
+        movies: results,
+        loading:false,
+        activePage: page,
+        total_pages:total_pages,
+        image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
+        mTitle: results[0].title,
+        mDesc: results[0].overview
+      })
+      console.log('res', results);
+    } catch (error) {
+      console.log('e', error);
+    }
+  }
+
+  loadMovie = async () => {
+     const page = this.state.activePage + 1;
+     const url = `${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}&language=fr`;
+     return await axios.get(url);
   }
 
   handleSearch = value => {
