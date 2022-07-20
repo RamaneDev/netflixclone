@@ -1,52 +1,20 @@
 import React, {Component} from "react";
-import { Header } from "./components";
+import { Header, Spinner } from "./components";
 import './App.css';
 import { Home } from "./routes/Home";
 import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 class App extends Component {
 
   state = {
-    loading:false,
-    movies:[
-      {
-        backdrop_path: './images/Fast_large.jpg',
-        id: 475557,
-        overview:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis in quos impedit? Iure officia fugit nostrum blanditiis! Blanditiis voluptatem consectetur, eos fugiat explicabo maiores, optio perferendis rem quas perspiciatis quos?",
-        poster_path: './images/Fast_small.jpg',
-        title: "Fast and Furious"
-      },
-      {
-          backdrop_path: './images/Fast_large.jpg',
-          id: 475558,
-          overview:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis in quos impedit? Iure officia fugit nostrum blanditiis! Blanditiis voluptatem consectetur, eos fugiat explicabo maiores, optio perferendis rem quas perspiciatis quos?",
-          poster_path: './images/Fast_small.jpg',
-          title: "Fast and Furious"
-        },
-        {
-          backdrop_path: './images/Fast_large.jpg',
-          id: 475559,
-          overview:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis in quos impedit? Iure officia fugit nostrum blanditiis! Blanditiis voluptatem consectetur, eos fugiat explicabo maiores, optio perferendis rem quas perspiciatis quos?",
-          poster_path: './images/Fast_small.jpg',
-          title: "Fast and Furious"
-        },
-        {
-          backdrop_path: './images/Fast_large.jpg',
-          id: 475554,
-          overview:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis in quos impedit? Iure officia fugit nostrum blanditiis! Blanditiis voluptatem consectetur, eos fugiat explicabo maiores, optio perferendis rem quas perspiciatis quos?",
-          poster_path: './images/Fast_small.jpg',
-          title: "Fast and Furious"
-        },
-    ],
+    loading:true,
+    movies:[],
     badge:0,
-    image:'./images/Fast_large.jpg',
-    mTitle:'Fast and Furious',
-    mDesc: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+    image:null,
+    mTitle:'',
+    mDesc: '',
     activePage:0,
     totalPages:0,
     searchText:""
@@ -133,14 +101,23 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-         <Header badge={this.state.badge} />
-         <Home 
-           {...this.state}
-           onSearchClick={this.handleSearch}
-           onButtonClick={this.loadMore}
-          />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Header badge={this.state.badge} />
+          {!this.state.image?
+          (
+              <Spinner />
+          ):
+          (
+            <Routes>
+            <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> }     />            
+           </Routes>
+         
+          )}
+       
+        </div>
+      </BrowserRouter>
+     
     );
   }
   
