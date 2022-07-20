@@ -5,7 +5,7 @@ import { Home } from "./routes/Home";
 import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Details } from "./routes";
+import { Details, NotFound } from "./routes";
 
 class App extends Component {
 
@@ -112,7 +112,8 @@ class App extends Component {
           (
             <Routes>
                <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } /> 
-               <Route path="/:id" exact element={ <Details /> }     />            
+               <Route path="/:id" exact element={ <Details /> }     />
+               <Route element={ <NotFound /> }     />               
            </Routes>
          
           )}
