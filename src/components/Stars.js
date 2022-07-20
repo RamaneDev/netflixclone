@@ -1,5 +1,6 @@
 import React from "react";
 import FontAwesome from "react-fontawesome";
+import '../css/stars.css';
 
 const Stars = props => {
     const renderStars1 = () => {
@@ -20,7 +21,7 @@ const Stars = props => {
                 <FontAwesome
                 key={i}
                 className="stars"
-                name="star-0"
+                name="star-o"
                 size="3x" />
             )
         })
