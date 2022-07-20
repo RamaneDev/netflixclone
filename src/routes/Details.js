@@ -2,38 +2,49 @@ import React, {Component} from "react";
 import { act } from "react-dom/test-utils";
 import { ActorList, HeaderDetails, Spinner } from "../components";
 
-const actors = [
-    {
-        name:"mesri batman"
-    },
-    {
-        name:"omar khatab "
-    },
-    {
-        name:"bruce lai"
-    },
-    {
-        name:"kody cactus"
-    }
-]
 
 class Details extends Component {
+    state = {
+        loading:true,
+        actors:[
+            {
+                name:"mesri batman"
+            },
+            {
+                name:"omar khatab "
+            },
+            {
+                name:"bruce lai"
+            },
+            {
+                name:"kody cactus"
+            }
+        ],
+        mTitle: 'Batman',
+        mDesc:'Voici la description du film batman',
+        imgSrc:'./images/Fast_large.jpg',
+        revenue:'$12545',
+        runtime:'2h30',
+        status:'Released',
+        vote:''
+    }
     render() {
+        const {loading, mTitle, mDesc, actors, imgSrc, revenue, runtime, status, vote } = this.state;
         return (
             <div className="app">
-                {this.props.loading?
+                {loading?
                 (
                     <Spinner />
                 ): (
                     <>
                     <HeaderDetails 
-                      mTitle={"Batman"}
-                      mDesc={"voici la description du film batman"}
-                      imgSrc={'./images/Fast_large.jpg'}
-                      runtime={'2h30'}
-                      revenue={'$11548'}
-                      status={'Released'}
-                      vote={''}
+                      mTitle={mTitle}
+                      mDesc={mDesc}
+                      imgSrc={imgSrc}
+                      runtime={runtime}
+                      revenue={revenue}
+                      status={status}
+                      vote={vote}
                     />
                     
                     <ActorList actors={actors} />
