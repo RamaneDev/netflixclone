@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import FontAwesome from "react-fontawesome";
+import { Link } from "react-router-dom";
 import '../css/Poster.css';
 
 
@@ -31,7 +32,10 @@ class Poster extends Component {
             <div className="poster" 
                  onMouseEnter={this.showOverlay}
                  onMouseLeave={this.hideOverlay}>
+             <Link to={{pathname: `/${this.props.id}`}}>
                <img className="poster--img" src={this.props.imgSrc} alt="poster"/>
+             </Link>
+              
                {this.state.hover?
                (
                    <div className="poster--overlay">
