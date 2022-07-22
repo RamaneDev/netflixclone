@@ -1,11 +1,11 @@
-import React, {Component} from "react";
-import { act } from "react-dom/test-utils";
+import React, { useState } from "react";
 import { ActorList, HeaderDetails, Spinner } from "../components";
 
 
-class Details extends Component {
-    state = {
-        loading:true,
+
+function Details() {
+    const[state, setState] = useState({
+        loading:false,
         actors:[
             {
                 name:"mesri batman"
@@ -27,11 +27,12 @@ class Details extends Component {
         runtime:'2h30',
         status:'Released',
         vote:''
-    }
-    render() {
-        const {loading, mTitle, mDesc, actors, imgSrc, revenue, runtime, status, vote } = this.state;
-        return (
-            <div className="app">
+    });
+    
+    const {loading, mTitle, mDesc, actors, imgSrc, revenue, runtime, status, vote } = state;
+
+    return (
+        <div className="app">
                 {loading?
                 (
                     <Spinner />
@@ -51,8 +52,7 @@ class Details extends Component {
                     </>
                 )}
             </div>
-        )
-    }
+    )
 }
 
 export { Details }
