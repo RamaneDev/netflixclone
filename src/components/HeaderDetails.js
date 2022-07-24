@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Container } from "./Container";
 import { Stars } from "./Stars";
 import '../css/HeaderDetails.css';
+import {IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 
 class HeaderDetails extends Component {
     render() {
-        const imgSrc = this.props.imgSrc;
+        const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}${this.props.imgSrc}`;
         return (
              <div className="headerDetails">
                  <div className="badge-decoration">{this.props.status}</div>
