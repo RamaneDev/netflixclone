@@ -44,8 +44,7 @@ class App extends Component {
      return await axios.get(url);
   }
 
-  searchMovie = async () => {
-    const page = this.state.activePage + 1;
+  searchMovie = async () => {   
      const url = `${API_URL}/search/movie?api_key=${API_KEY}&query=${this.state.searchText}&language=fr`;
      return await axios.get(url);
   }
