@@ -7,7 +7,7 @@ import { API_KEY, API_URL } from "../config";
 
 function Details(props) {
     
-    const[State, SetState] = useState({
+    const[state, SetState] = useState({
         loading:true,
         actors:[],
         mTitle: '',
@@ -19,7 +19,7 @@ function Details(props) {
         vote:''
     });
     
-    const {loading, mTitle, mDesc, actors, imgSrc, revenue, runtime, status, vote } = State;
+    const {loading, mTitle, mDesc, actors, imgSrc, revenue, runtime, status, vote } = state;
 
     const id = useParams().id;
 
