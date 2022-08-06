@@ -1,11 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
 import FontAwesome from "react-fontawesome";
 import { Link } from "react-router-dom";
 import '../css/Header.css';
 
 
-class Header extends Component {
-    render() {
+const Header = (props) => {
+    
         return (
           <div className="header">
             <Link to={{pathname:'/'}}>
@@ -14,11 +14,10 @@ class Header extends Component {
             
             <h3>NETFLIX</h3>
             <FontAwesome className="header--heart" name="heart" size="5x" />
-            <div className="header--badge">{this.props.badge}</div>
+            <div className="header--badge">{props.badge}</div>
           </div>
-        )
-        
-    }
+        )   
+  
 }
 
 export { Header };
