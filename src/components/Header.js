@@ -1,10 +1,15 @@
 import React from "react";
 import FontAwesome from "react-fontawesome";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import '../css/Header.css';
+import { getNumber } from "../features/movies/moviesSlice";
 
 
 const Header = (props) => {
+
+
+        const number = useSelector(getNumber)
     
         return (
           <div className="header">
@@ -14,7 +19,7 @@ const Header = (props) => {
             
             <h3>NETFLIX</h3>
             <FontAwesome className="header--heart" name="heart" size="5x" />
-            <div className="header--badge">{props.badge}</div>
+            <div className="header--badge">{number}</div>
           </div>
         )   
   

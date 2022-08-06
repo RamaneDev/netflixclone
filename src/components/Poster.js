@@ -1,14 +1,18 @@
 import React, {useState} from "react";
 import FontAwesome from "react-fontawesome";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import '../css/Poster.css';
+import { addMovie } from "../features/movies/moviesSlice";
 
 
 const Poster = (props) =>  {
     
     const [state, setState] = useState({        
             hover:false        
-    })   
+    })
+    
+    const dispach = useDispatch()
    
 
     const showOverlay = () => {
@@ -27,6 +31,7 @@ const Poster = (props) =>  {
     const add =() => {
       // redux
       console.log("add with redux");
+      dispach(addMovie(props.movie))
     }
 
    
