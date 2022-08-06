@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
+import { getMovies } from './features/movies/moviesSlice';
 import store from './store';
+
+store.dispatch(getMovies())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
