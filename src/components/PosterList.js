@@ -3,10 +3,12 @@ import { Poster } from "./Poster";
 import '../css/PosterList.css';
 import {IMAGE_BASE_URL, POSTER_SIZE} from '../config';
 
-class PosterList extends Component {
+const PosterList = (props) => {
+
     
-    renderPoster = () => {
-        return this.props.movies.map( movie => {
+  const renderPoster = () => {
+         console.log('posterLIst render')
+        return  props.movies.map( movie => {
             const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
             const wish = false;
             return (
@@ -21,19 +23,19 @@ class PosterList extends Component {
                 />
             )
         })
-    }
+    }   
     
-    render() {
+        
         return (
             <div className="posterList">
                 <h3 className="posterList--title">NOUVEAUX FILMS</h3>
                 <div className="posterList--grid">
-                   {this.renderPoster()}
+                   {renderPoster()}
                 </div>
             </div>
 
         )
-    }
+    
 }
 
 export { PosterList }
