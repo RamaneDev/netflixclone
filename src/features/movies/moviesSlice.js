@@ -23,7 +23,13 @@ const moviesSlice = createSlice({
           localStorage.setItem("movies", JSON.stringify(moviesArray))
           moviesAdapter.addOne(state, action.payload)
         },
-        removeMovie: moviesAdapter.removeOne,
+        removeMovie(state, action) {
+            moviesAdapter.removeOne(state, action.payload)
+            const movies = JSON.parse(localStorage.getItem("movies"))
+            let moviesArray = [...movies]
+            moviesArray = moviesArray.filter(mv => mv.id !== action.payload)
+            localStorage.setItem("movies", JSON.stringify(moviesArray))
+        },
         getMovies(state, action) {
            const movies = JSON.parse(localStorage.getItem("movies"))
            if(movies) {
