@@ -1,57 +1,59 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import FontAwesome from "react-fontawesome";
 import { Link } from "react-router-dom";
 import '../css/Poster.css';
 
 
-class Poster extends Component {
-    state = {
-        hover:false
+const Poster = (props) =>  {
+    
+    const [state, setState] = useState({        
+            hover:false        
+    })   
+   
+
+    const showOverlay = () => {
+        setState({hover:true});
     }
 
-    showOverlay = () => {
-        this.setState({hover:true});
+    const hideOverlay = () => {
+        setState({hover:false});
     }
 
-    hideOverlay = () => {
-        this.setState({hover:false});
-    }
-
-    remove = () => {
+    const remove = () => {
        // redux
        console.log("remove with redux");
     }
 
-    add =() => {
+    const add =() => {
       // redux
       console.log("add with redux");
     }
 
-    render() {
+   
         return (
             <div className="poster" 
-                 onMouseEnter={this.showOverlay}
-                 onMouseLeave={this.hideOverlay}>
-             <Link to={{pathname: `/${this.props.id}`}}>
-               <img className="poster--img" src={this.props.imgSrc} alt="poster"/>
+                 onMouseEnter={showOverlay}
+                 onMouseLeave={hideOverlay}>
+             <Link to={{pathname: `/${props.id}`}}>
+               <img className="poster--img" src={props.imgSrc} alt="poster"/>
              </Link>
               
-               {this.state.hover?
+               {state.hover?
                (
                    <div className="poster--overlay">
                        <h3 className="poster--overlay__text">LISTE DE SOUHAITS</h3>
-                       {this.props.whished ? 
+                       {props.whished ? 
                        (
-                           <FontAwesome onClick={this.remove} className="poster--icon" name="heart" size="3x" />
+                           <FontAwesome onClick={remove} className="poster--icon" name="heart" size="3x" />
                        ):
                        (
-                           <FontAwesome onClick={this.add} className="poster--icon__not" name="heart-o" size="3x" />
+                           <FontAwesome onClick={add} className="poster--icon__not" name="heart-o" size="3x" />
                        )}
                    </div>
                ): null}
             </div>
         )
-    }
+  
 }
 
 export { Poster }
