@@ -1,4 +1,4 @@
-import { createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 
 const moviesAdapter = createEntityAdapter()
@@ -11,16 +11,17 @@ const moviesSlice = createSlice({
     initialState,
     reducers:{
         addMovie(state, action) {
-          const movies = JSON.parse(localStorage.getItem("movies"))        
+          const movies = JSON.parse(localStorage.getItem("movies"))
+          let moviesArray = []        
           if(movies) {
-              const moviesArray = [...movies]
+              moviesArray = [...movies]
               moviesArray.push(action.payload)
           } else {
-              const moviesArray = []
+              moviesArray = []
               moviesArray.push(action.payload)
           }
           localStorage.setItem("movies", JSON.stringify(moviesArray))
-          moviesAdapter.addOne
+          moviesAdapter.addOne(state, action.payload)
         },
         removeMovie: moviesAdapter.removeOne,
         getMovies(state, action) {
