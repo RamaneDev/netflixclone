@@ -73,7 +73,7 @@ class App extends Component {
        console.log('e', error)
        
      }
-    console.log('handleSearch', value);
+ 
   }
 
   loadMore = async () => {
@@ -96,7 +96,7 @@ class App extends Component {
        console.log('e', error)
        
      }
-    console.log('load more');
+  
   }
   
   render() {
