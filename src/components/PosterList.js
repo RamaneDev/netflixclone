@@ -1,16 +1,27 @@
-import React, {Component} from "react";
+import React from "react";
 import { Poster } from "./Poster";
 import '../css/PosterList.css';
 import {IMAGE_BASE_URL, POSTER_SIZE} from '../config';
+import { useSelector } from "react-redux";
+import { selectMovies } from "../features/movies/moviesSlice";
 
-const PosterList = (props) => {
+const PosterList = (props) => {  
+  
+       
+    const funMovies = useSelector(selectMovies)    
+      
+    const renderPoster = () => {    
+       
 
-    
-  const renderPoster = () => {
-         console.log('posterLIst render')
         return  props.movies.map( movie => {
             const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
-            const wish = false;
+            let wish = false;
+            funMovies.forEach(mv => {
+                if(mv.id === movie.id) {
+                    wish = true
+                }
+            })
+            
             return (
                 <Poster 
                    key={movie.id}
