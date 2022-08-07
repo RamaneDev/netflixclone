@@ -3,7 +3,7 @@ import FontAwesome from "react-fontawesome";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import '../css/Poster.css';
-import { addMovie } from "../features/movies/moviesSlice";
+import { addMovie, removeMovie } from "../features/movies/moviesSlice";
 
 
 const Poster = (props) =>  {
@@ -24,16 +24,12 @@ const Poster = (props) =>  {
     }
 
     const remove = () => {
-       // redux
-       console.log("remove with redux");
+       dispach(removeMovie(props.id))
     }
 
-    const add =() => {
-      // redux
-      console.log("add with redux");
+    const add =() => { 
       dispach(addMovie(props.movie))
     }
-
    
         return (
             <div className="poster" 
