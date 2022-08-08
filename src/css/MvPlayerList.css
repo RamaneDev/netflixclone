@@ -27,9 +27,9 @@
   background: #901818;
   height: 2rem;
   width: 3rem;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   padding: 0.2rem 0.5rem;
   border-radius: 0.5rem;
   font-weight: bold;
