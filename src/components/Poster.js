@@ -3,7 +3,7 @@ import FontAwesome from "react-fontawesome";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import '../css/Poster.css';
-import { addMovie, removeMovie } from "../features/movies/moviesSlice";
+import { addMovie, getMovieDuration, removeMovie } from "../features/movies/moviesSlice";
 
 
 const Poster = (props) =>  {
@@ -28,7 +28,8 @@ const Poster = (props) =>  {
     }
 
     const add =() => { 
-      dispach(addMovie(props.movie))
+      console.log('add',props.movie)
+      dispach(getMovieDuration(props.movie))
     }
    
         return (
