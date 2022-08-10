@@ -37,19 +37,6 @@ const moviesSlice = createSlice({
     name:'movies',
     initialState,
     reducers:{
-        addMovie(state, action) {
-          const movies = JSON.parse(localStorage.getItem("movies"))
-          let moviesArray = []        
-          if(movies) {
-              moviesArray = [...movies]
-              moviesArray.push(action.payload)
-          } else {
-              moviesArray = []
-              moviesArray.push(action.payload)
-          }
-          localStorage.setItem("movies", JSON.stringify(moviesArray))
-          moviesAdapter.addOne(state, action.payload)
-        },
         removeMovie(state, action) {
             moviesAdapter.removeOne(state, action.payload)
             const movies = JSON.parse(localStorage.getItem("movies"))
@@ -71,7 +58,7 @@ const moviesSlice = createSlice({
     }
 })
 
-export const {addMovie, removeMovie, getMovies } = moviesSlice.actions
+export const {removeMovie, getMovies } = moviesSlice.actions
 
 export default moviesSlice.reducer
 
