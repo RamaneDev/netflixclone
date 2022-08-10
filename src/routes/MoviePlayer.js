@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { MvPlayerList, VideoPlayer } from "../components"
 import '../css/MoviePlayer.css'
 import store from '../store';
@@ -6,33 +6,35 @@ import store from '../store';
 
 
 const MoviePlayer = (props) => {
+
+    const movies = Object.values(store.getState().movies.entities)   
+
+    const [state, setState] = useState({
+        selectedMovie: movies[0]
+    })    
     
 
-    const state = store.getState()
-    const movies = Object.values(state.movies.entities)
-    const selectedMovie = movies[0]
-    
-    // const selectedMovie = {
-    //     duration : '2h 9m',
-    //     id: 429617,
-    //     imageUrl: 'http://image.tmdb.org/t/p/w1280/5myQbDzw3l8K9yofUXRJ4UTVgam.jpg',
-    //     position: 1,
-    //     title: 'Spider-Man : Far from home',
-    //     videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-
-    // }
+    const handleSelectedMovie = (idSelectedMovie) => {
+        if(idSelectedMovie !== state.selectedMovie.id) {
+            const movie = movies.find(movie => movie.id === idSelectedMovie)
+            setState({
+                selectedMovie:movie
+            })
+        }
+    }
     
     
 
     return(
         <div className="moviePlayer">
              <VideoPlayer 
-                videoUrl = {selectedMovie.videoUrl}
-                imageUrl = {selectedMovie.imageUrl}
+                videoUrl = {state.selectedMovie.videoUrl}
+                imageUrl = {state.selectedMovie.imageUrl}
              />
              <MvPlayerList 
                movies={movies}
-               selectedMovie={selectedMovie}
+               selectedMovie={state.selectedMovie}
+               handleSelectedMovie={handleSelectedMovie}
               />
         </div>
     )

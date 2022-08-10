@@ -3,8 +3,9 @@ import { MvPlayerListItem } from './MvPlayerListItem'
 import '../css/MvPlayerList.css'
 
 const MvPlayerList = (props) => {
-    const position ='1'
-    const total = '10'
+
+    const position = props.movies.findIndex(movie => movie.id === props.selectedMovie.id) + 1
+    const total = props.movies.length
     
     const renderList = () => {
        return props.movies.map((movie, i) => {
@@ -15,6 +16,7 @@ const MvPlayerList = (props) => {
                  key={movie.id}
                  number= {i + 1}
                  active = {active}
+                 handleSelectedMovie={props.handleSelectedMovie}
                />           
             )
        })
