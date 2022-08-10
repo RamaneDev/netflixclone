@@ -12,24 +12,25 @@ export const getMovieDuration = createAsyncThunk('movies/saveNewMovie', async (m
     const response = await fetch(url);    
     const { runtime } = await response.json();
 
-       movie.duration =  calcTime(runtime)
-       movie.imageUrl = `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${movie.backdrop_path}`
-       movie.videoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
- 
-
+    const movietoStore = {...movie, 
+                          duration: calcTime(runtime),
+                          imageUrl: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${movie.backdrop_path}`,
+                          videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+    
+    }
        let movies = JSON.parse(localStorage.getItem('movies'))
        if(movies) {
            let newArray = [...movies]
-           newArray.push(movie)
+           newArray.push(movietoStore)
            localStorage.setItem('movies', JSON.stringify(newArray))
        } else {
            let newArray = []
-           newArray.push(movie)
+           newArray.push(movietoStore)
            localStorage.setItem('movies', JSON.stringify(newArray))
 
        }
-       console.log(movie)  
-    return movie
+       console.log(movietoStore)  
+    return movietoStore
 })
 
 
