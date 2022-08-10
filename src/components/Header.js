@@ -18,9 +18,17 @@ const Header = (props) => {
             </Link>
             
             <h3>NETFLIX</h3>
-            <Link to={{pathname: '/player'}}>           
-              <FontAwesome className="header--heart" name="heart" size="5x" />
-            </Link>
+            {number > 0 ?
+              (
+              <Link to={{pathname: '/player'}}>           
+                <FontAwesome className="header--heart" name="heart" size="5x" />
+              </Link>
+              ):
+              (
+                <FontAwesome className="header--heart" name="heart" size="5x" />
+              )          
+            }
+          
             <div className="header--badge">{number}</div>
           </div>
         )   
