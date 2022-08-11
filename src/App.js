@@ -5,7 +5,8 @@ import { Home } from "./routes/Home";
 import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Details, MoviePlayer, NotFound } from "./routes";
+import { Details, Login, MoviePlayer, NotFound } from "./routes";
+import { initializeFirebase } from "./utils/firebase-config";
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
 
   async componentDidMount() {
     try {
+      initializeFirebase()
       const {data: {results, page, total_pages}} = await this.loadMovie();
       this.setState({
         movies: results,
@@ -110,7 +112,8 @@ class App extends Component {
           ):
           (
             <Routes>
-               <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } /> 
+               <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } />
+               <Route path="/login" exact element= {<Login />}  /> 
                <Route path="/player" exact element= {<MoviePlayer />}  />
                <Route path="/player/:id" exact element= {<MoviePlayer />}  />
                <Route path="/:id" exact element={ <Details /> }     />
