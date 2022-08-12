@@ -27,8 +27,7 @@ const Poster = (props) =>  {
        dispach(removeMovie(props.id))
     }
 
-    const add =() => { 
-      console.log('add',props.movie)
+    const add =() => {    
       dispach(getMovieDuration(props.movie))
     }
    

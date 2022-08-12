@@ -29,7 +29,7 @@ export const getMovieDuration = createAsyncThunk('movies/saveNewMovie', async (m
            localStorage.setItem('movies', JSON.stringify(newArray))
 
        }
-       console.log(movietoStore)  
+     
     return movietoStore
 })
 

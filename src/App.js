@@ -5,7 +5,7 @@ import { Home } from "./routes/Home";
 import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Details, Login, MoviePlayer, NotFound } from "./routes";
+import { Details, Login, MoviePlayer, NotFound, Payment } from "./routes";
 import { initializeFirebase } from "./utils/firebase-config";
 
 class App extends Component {
@@ -113,7 +113,8 @@ class App extends Component {
           (
             <Routes>
                <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } />
-               <Route path="/login" exact element= {<Login />}  /> 
+               <Route path="/login" exact element= {<Login />}  />
+               <Route path="/payment" exact element={<Payment/>}/> 
                <Route path="/player" exact element= {<MoviePlayer />}  />
                <Route path="/player/:id" exact element= {<MoviePlayer />}  />
                <Route path="/:id" exact element={ <Details /> }     />
