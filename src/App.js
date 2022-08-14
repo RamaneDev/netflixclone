@@ -6,6 +6,8 @@ import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Details, MoviePlayer, NotFound } from "./routes";
+import Login from "./routes/Login";
+import { UserAuthContextProvider } from "./context/userAuthContext";
 
 class App extends Component {
 
@@ -109,13 +111,16 @@ class App extends Component {
               <Spinner />
           ):
           (
-            <Routes>
-               <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } /> 
-               <Route path="/player" exact element= {<MoviePlayer />}  />
-               <Route path="/player/:id" exact element= {<MoviePlayer />}  />
-               <Route path="/:id" exact element={ <Details /> }     />
-               <Route element={ <NotFound /> }     />               
-           </Routes>
+            <UserAuthContextProvider>
+              <Routes>
+                <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } />
+                <Route path="/login" element={<Login />} /> 
+                <Route path="/player" exact element= {<MoviePlayer />}  />
+                <Route path="/player/:id" exact element= {<MoviePlayer />}  />
+                <Route path="/:id" exact element={ <Details /> }     />
+                <Route element={ <NotFound /> }     />               
+            </Routes>
+           </UserAuthContextProvider>
          
           )}
        
