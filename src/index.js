@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { getMovies } from './features/movies/moviesSlice';
 import store from './store';
 
