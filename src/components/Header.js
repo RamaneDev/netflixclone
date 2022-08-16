@@ -13,7 +13,7 @@ const Header = (props) => {
     
         return (
           <div className="header">
-            <Link to={{pathname:'/'}}>
+            <Link to={{pathname:'/home'}}>
               <FontAwesome className="header--movie" name="film" size="5x" />
             </Link>
             

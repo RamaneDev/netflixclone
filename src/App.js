@@ -112,14 +112,14 @@ class App extends Component {
           ):
           (
             <UserAuthContextProvider>
-              <Routes>
-                <Route path="" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } />
-                <Route path="/login" element={<Login />} /> 
-                <Route path="/player" exact element= {<MoviePlayer />}  />
-                <Route path="/player/:id" exact element= {<MoviePlayer />}  />
-                <Route path="/:id" exact element={ <Details /> }     />
-                <Route element={ <NotFound /> }     />               
-            </Routes>
+                <Routes>
+                  <Route path="" exact element={ <Login  /> } />
+                  <Route path="/home" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } /> 
+                  <Route path="/player" exact element= {<MoviePlayer />}  />
+                  <Route path="/player/:id" exact element= {<MoviePlayer />}  />
+                  <Route path="/:id" exact element={ <Details /> }     />
+                  <Route element={ <NotFound /> }     />               
+              </Routes>
            </UserAuthContextProvider>
          
           )}

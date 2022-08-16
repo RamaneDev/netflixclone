@@ -20,7 +20,7 @@ const Login = () => {
     try {
       await logIn(email, password);
       //console.log(user)
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }
@@ -31,7 +31,7 @@ const Login = () => {
     try {
       await googleSignIn();
      
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
