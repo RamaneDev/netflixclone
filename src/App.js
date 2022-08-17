@@ -5,7 +5,7 @@ import { Home } from "./routes/Home";
 import {API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE} from './config'
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Details, MoviePlayer, NotFound } from "./routes";
+import { Details, MoviePlayer, NotFound, Payment } from "./routes";
 import Login from "./routes/Login";
 import { UserAuthContextProvider } from "./context/userAuthContext";
 
@@ -34,7 +34,7 @@ class App extends Component {
         image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
         mTitle: results[0].title,
         mDesc: results[0].overview
-      })      
+      })
     } catch (error) {
       console.log('e', error);
     }
@@ -46,13 +46,13 @@ class App extends Component {
      return await axios.get(url);
   }
 
-  searchMovie = async () => {   
+  searchMovie = async () => {
      const url = `${API_URL}/search/movie?api_key=${API_KEY}&query=${this.state.searchText}&language=fr`;
      return await axios.get(url);
   }
 
   handleSearch = (value) => {
-    // lancer la recherche 
+    // lancer la recherche
     try {
       this.setState({
         loading:true,
@@ -68,14 +68,14 @@ class App extends Component {
           image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
           mTitle: results[0].title,
           mDesc: results[0].overview
-        })      
-      })     
-       
+        })
+      })
+
      } catch (error) {
        console.log('e', error)
-       
+
      }
- 
+
   }
 
   loadMore = async () => {
@@ -92,20 +92,20 @@ class App extends Component {
         image:`${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
         mTitle: results[0].title,
         mDesc: results[0].overview
-      })      
-       
+      })
+
      } catch (error) {
        console.log('e', error)
-       
+
      }
-  
+
   }
-  
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header badge={this.state.badge} />
+        
           {!this.state.image?
           (
               <Spinner />
@@ -114,23 +114,24 @@ class App extends Component {
             <UserAuthContextProvider>
                 <Routes>
                   <Route path="" exact element={ <Login  /> } />
-                  <Route path="/home" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } /> 
+                  <Route path="/home" exact element={ <Home {...this.state}  onSearchClick={this.handleSearch} onButtonClick={this.loadMore}  /> } />
                   <Route path="/player" exact element= {<MoviePlayer />}  />
+                  <Route path="/payment" exact element= {<Payment />}  />
                   <Route path="/player/:id" exact element= {<MoviePlayer />}  />
                   <Route path="/:id" exact element={ <Details /> }     />
-                  <Route element={ <NotFound /> }     />               
+                  <Route element={ <NotFound /> }     />
               </Routes>
            </UserAuthContextProvider>
-         
+
           )}
-       
+
         </div>
       </BrowserRouter>
-     
+
     );
   }
-  
- 
+
+
 }
 
 export default App;
